@@ -3,6 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import "./test-jilfond.scss";
+import "bootstrap";
+
 Vue.config.productionTip = false;
 
 new Vue({

@@ -1,0 +1,29 @@
+@import "default-bootstrap-4.6.2";
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(./assets/fonts/Montserrat-Regular.ttf) format("ttf");
+}
+@font-face {
+  font-family: "Material Icons";
+  src: url(./assets/fonts/MaterialIcons-Regular.woff2) format("woff2");
+}
+
+body {
+  font-family: "Motserrat";
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-size: 1.5rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.btn-icon-square {
+  line-height: 0.75;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  max-width: 2.375rem;
+  max-height: 2.375rem;
+}
