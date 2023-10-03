@@ -1,5 +1,8 @@
 <template>
-  <div>Header</div>
+  <div class="container d-flex justify-content-between">
+    <div class="bold">Жилфонд</div>
+    <div>Пользователь</div>
+  </div>
 </template>
 
 <script>
