@@ -1,29 +1,22 @@
 <template>
-  <div id="employee-view" class="view">
+  <div id="employee-view">
     <template v-if="employee">
-      <router-link to="/">назад</router-link>
       <img src="images/default.jpg" alt="employee photo" />
-      <div class="employee-info">
-        <div>{{ employee.name }}</div>
-        <div>email: {{ employee.email }}</div>
-        <div>phone: 010-692-6593 x 09125</div>
-        <div>О себе</div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-          dicta distinctio eius fugit ipsum nemo nisi rem. Ab alias animi
-          aspernatur blanditiis dignissimos distinctio, doloremque dolores ex
-          exercitationem maiores nemo neque nesciunt nisi odio perspiciatis
-          placeat quod recusandae rerum sint tempora temporibus, tenetur
-          voluptates! Atque culpa doloribus enim incidunt molestiae officiis
-          quisquam! Ab alias corporis distinctio dolore eveniet facere ipsa
-          ipsam laudantium mollitia neque, nulla numquam omnis pariatur
-          provident quae qui ratione? Doloribus exercitationem quibusdam
-          recusandae voluptatibus. Accusamus adipisci alias aliquam amet commodi
-          doloribus eius enim facere ipsam libero minima officiis, porro
-          praesentium quo veniam? Commodi non quibusdam reiciendis repellendus?
-        </div>
-      </div>
+      <h2>{{ employee.name }}</h2>
+      <div><span class="title">email:</span> {{ employee.email }}</div>
+      <div><span class="title">phone:</span> {{ employee.phone }}</div>
+      <h3>О себе</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
     </template>
+    <router-link to="/">На главную</router-link>
   </div>
 </template>
 <script>
@@ -45,3 +38,49 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+#employee-view {
+  color: #76787d;
+  font-size: 0.875rem;
+
+  img {
+    margin-right: 3.75rem;
+    margin-bottom: 1.25rem;
+
+    @media (min-width: 1400px) {
+      float: left;
+    }
+  }
+
+  h2,
+  h3,
+  .title {
+    color: #333;
+    font-family: "Montserrat SemiBold", serif;
+  }
+
+  h2 {
+    color: #000;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  h3 {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  & > :not(:first-child) {
+    margin-top: 0.625rem;
+  }
+
+  & > :last-child {
+    display: inline-block;
+    margin-top: 1.25rem;
+  }
+}
+</style>

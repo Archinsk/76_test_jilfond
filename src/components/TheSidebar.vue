@@ -1,20 +1,21 @@
 <template>
   <aside class="sidebar">
-    <div>Поиск сотрудников</div>
+    <div class="title">Поиск сотрудников</div>
     <input-search />
     <pre-loader v-if="loading" comment="Поиск сотрудников..." />
     <template v-else>
-      <div>Результаты</div>
+      <div class="title">Результаты</div>
       <template v-if="employees.length">
         <employee-card
           v-for="employee of employees"
           :key="employee.id"
+          :name="employee.name"
+          :email="employee.email"
           :class="employee.id === activeEmployeeId ? 'active' : ''"
           @click="setActiveEmployee(employee.id)"
         />
       </template>
-      <div v-else>{{ searchResultText }}</div>
-      <!--      <employee-card class="active" />-->
+      <div v-else class="small-text">{{ searchResultText }}</div>
     </template>
   </aside>
 </template>
@@ -42,9 +43,10 @@ export default {
   },
   methods: {
     setActiveEmployee(id) {
-      console.log("push");
-      this.$router.push("/employee");
       this.$store.commit("setActiveEmployeeId", id);
+      if (this.$route.path !== "/employee") {
+        this.$router.push("/employee");
+      }
     },
   },
 };
@@ -52,7 +54,31 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
+  box-sizing: border-box;
+  min-width: 18.1875rem;
   padding: 1.25rem;
-  border-right: solid 1px #e0e0e0;
+  border-bottom: solid 1px #e0e0e0;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1400px) {
+    border-bottom: none;
+    border-right: solid 1px #e0e0e0;
+  }
+
+  .title {
+    font-family: "Montserrat SemiBold", serif;
+    margin-bottom: 1rem;
+
+    &:not(:first-child) {
+      margin-top: 1.8125rem;
+    }
+  }
+
+  .small-text {
+    color: #76787d;
+    font-size: 0.875rem;
+  }
 }
 </style>

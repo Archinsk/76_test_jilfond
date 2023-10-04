@@ -12,13 +12,13 @@ const routes = [
   },
   {
     path: "/employee",
-    name: "employee-pge",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/EmployeeView.vue"),
+    name: "employee-page",
+    component: () => import("../views/EmployeeView.vue"),
   },
 ];
 
 const router = new VueRouter({
+  historyMode: true,
   routes,
 });
 

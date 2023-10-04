@@ -1,8 +1,6 @@
 <template>
   <div class="spinner">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
+    <div class="spinner-border" role="status"></div>
     <div v-if="comment">{{ comment }}</div>
   </div>
 </template>
@@ -18,6 +16,26 @@ export default {
 
 <style lang="scss" scoped>
 .spinner {
-  text-align: center;
+  margin-top: 1.8125rem;
+  display: flex;
+  align-items: center;
+  color: #76787d;
+
+  @keyframes spinner-border {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spinner-border {
+    margin-right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.25em solid currentcolor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: 0.75s linear infinite spinner-border;
+    animation: 0.75s linear infinite spinner-border;
+  }
 }
 </style>

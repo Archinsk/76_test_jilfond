@@ -11,11 +11,11 @@ export default new Vuex.Store({
     // Задержка выполнения запроса
     requestTimer: {
       id: null,
-      delay: 2000,
+      delay: 750,
     },
     // Задержка прелоадера
     loader: {
-      duration: 4000,
+      duration: 750,
       start: null,
       loading: false,
     },
@@ -27,10 +27,12 @@ export default new Vuex.Store({
       if (state.inputValue) {
         let userNames = state.inputValue.split(",");
         userNames.forEach((username) => {
-          username =
-            username.trim()[0].toUpperCase() +
-            username.trim().toLowerCase().substr(1);
-          queryUserNames += `&username=${username}`;
+          if (username) {
+            username =
+              username.trim()[0].toUpperCase() +
+              username.trim().toLowerCase().substr(1);
+            queryUserNames += `&username=${username}`;
+          }
         });
         queryUserNames = queryUserNames.substr(1);
       }
@@ -73,18 +75,20 @@ export default new Vuex.Store({
       state.errorStatus = status;
     },
     setActiveEmployeeId(state, id) {
-      console.log("active");
       state.activeEmployeeId = id;
     },
   },
   actions: {
     changeInput({ state, commit, dispatch }, value) {
-      console.log(value);
       commit("setInputValue", value);
-      let timerId = setTimeout(() => {
-        dispatch("getUsers");
-      }, state.requestTimer.delay);
-      commit("resetRequestTimerId", timerId);
+      if (value) {
+        let timerId = setTimeout(() => {
+          dispatch("getUsers");
+        }, state.requestTimer.delay);
+        commit("resetRequestTimerId", timerId);
+      } else {
+        commit("setEmployees", []);
+      }
     },
     async getUsers({ getters, commit, dispatch }) {
       commit("setLoading", true);
@@ -99,7 +103,6 @@ export default new Vuex.Store({
           }
         })
         .then((json) => {
-          console.log(json);
           if (json) {
             commit("setErrorStatus", null);
             commit("setEmployees", json);
